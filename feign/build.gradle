@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+}
+apply from: 'upload.gradle'
+
+group 'xsungroup.framework'
+version '0.0.1-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compileOnly('io.swagger:swagger-annotations:1.5.13')
+    compileOnly('org.springframework.cloud:spring-cloud-starter-openfeign:2.1.2.RELEASE')
+    compileOnly 'org.projectlombok:lombok:1.18.2'
+    annotationProcessor 'org.projectlombok:lombok:1.18.2'
+    compileOnly 'com.alibaba:fastjson:1.2.58'
+}

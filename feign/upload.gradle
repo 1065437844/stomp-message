@@ -1,0 +1,41 @@
+apply plugin: 'maven'
+
+def getReleaseRepositoryUrl() {
+    return property('XSUN_RELEASE_REPOSITORY_URL_PRIVATE')
+}
+
+def getSnapshotRepositoryUrl() {
+    return property('XSUN_SNAPSHOT_REPOSITORY_URL_PRIVATE')
+}
+
+afterEvaluate { project ->
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                repository(url: getReleaseRepositoryUrl()) {
+                    authentication(userName: XSUN_NEXUS_USERNAME, password: XSUN_NEXUS_PASSWORD)
+                }
+
+                snapshotRepository(url: getSnapshotRepositoryUrl()) {
+                    authentication(userName: XSUN_NEXUS_USERNAME, password: XSUN_NEXUS_PASSWORD)
+                }
+                pom.project {
+                    groupId "com.xsungroup"
+                    artifactId "xinya-message"
+                    version project.version
+                    packaging "jar"
+                }
+            }
+        }
+    }
+
+    //源代码
+    task androidSourcesJar(type: Jar) {
+        classifier = 'sources'
+        from sourceSets.main.java.srcDirs
+    }
+
+    artifacts {
+        archives androidSourcesJar
+    }
+}

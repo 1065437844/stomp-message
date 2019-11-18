@@ -81,7 +81,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
                         final String userId = accessor.getLogin();
                         Principal principal;
                         if (userId == null) {
-                            principal = new UserPrincipal(UUID.randomUUID().toString(), true);
+                            principal = new UserPrincipal(UUID.randomUUID().toString().replace("-", ""), true);
                         } else {
                             principal = new UserPrincipal(userId);
                         }
