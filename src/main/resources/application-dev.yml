@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:mysql://10.10.10.111:4306/xsun_group?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
+    username: xsun_group
+    password: kqh9845lddGFdb5E
+  stomp:
+    relayHost: 10.10.10.111
+    clientLogin: user
+    clientPasscode: password
+    systemLogin: user
+    systemPasscode: password
