@@ -40,6 +40,19 @@ public class StompMessageServiceImpl implements StompMessageService {
         sendMessage(stompMessage);
     }
 
+    @Override
+    public void sendMessage(String userId, String title, String message) {
+        final StompMessage stompMessage = new StompMessage.Builder()
+                .setUserId(userId)
+                .setTitle(title)
+                .setContent(message)
+                .setNotification(true)
+                .setNotificationTitle(title)
+                .setNotificationContent(message)
+                .build();
+        sendMessage(stompMessage);
+    }
+
     private void sendMessage(StompMessage stompMessage) {
         MessageDto messageDto = new MessageDto();
         final ClickEvent clickEvent = stompMessage.getClickEvent();

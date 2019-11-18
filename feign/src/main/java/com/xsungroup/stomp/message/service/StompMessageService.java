@@ -14,4 +14,5 @@ public interface StompMessageService {
 
     void remoteLogin(String userId, List<String> userSessionIds);
 
+    void sendMessage(String userId, String title, String message);
 }
