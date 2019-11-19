@@ -5,6 +5,8 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
+import java.security.Principal;
+
 /**
  * @author 梁建军
  * 创建日期： 2019/11/13
@@ -17,6 +19,10 @@ import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 public class SessionDisconnectEventListener implements ApplicationListener<SessionDisconnectEvent> {
     @Override
     public void onApplicationEvent(SessionDisconnectEvent event) {
-        log.info("用户 {} 断开", event.getUser().getName());
+        final Principal user = event.getUser();
+        if (user == null) {
+            return;
+        }
+        log.info("用户 {} 断开", user.getName());
     }
 }

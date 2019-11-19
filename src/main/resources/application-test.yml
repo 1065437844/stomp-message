@@ -3,6 +3,9 @@ spring:
     url: jdbc:mysql://10.10.10.212:4306/xsun_group?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
     username: xsun_group
     password: 1iDnwwKq2QNRfD9N
+  redis:
+    database: 2
+    host: 10.10.10.212
   stomp:
     relayHost: 10.10.10.212
     clientLogin: user

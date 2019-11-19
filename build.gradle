@@ -26,6 +26,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1'
     implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'com.alibaba:fastjson:1.2.60'
     implementation 'com.alibaba:druid-spring-boot-starter:1.1.18'
     implementation 'net.logstash.logback:logstash-logback-encoder:5.2'    //日志

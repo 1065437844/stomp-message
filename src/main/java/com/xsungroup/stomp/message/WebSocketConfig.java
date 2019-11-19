@@ -1,6 +1,7 @@
 package com.xsungroup.stomp.message;
 
 import com.xsungroup.stomp.message.common.UserPrincipal;
+import com.xsungroup.stomp.message.service.UserTokenService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
+import org.springframework.messaging.MessageHeaders;
+import org.springframework.messaging.MessagingException;
 import org.springframework.messaging.simp.config.ChannelRegistration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.messaging.simp.stomp.StompCommand;
@@ -17,8 +20,10 @@ import org.springframework.messaging.support.MessageHeaderAccessor;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
+import org.springframework.web.socket.messaging.StompSubProtocolErrorHandler;
 
 import java.security.Principal;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -38,9 +43,33 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Autowired
     private StompProperties stompProperties;
 
+    @Autowired
+    private UserTokenService userTokenService;
+
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/stomp").setAllowedOrigins("*");
+        registry.setErrorHandler(new StompSubProtocolErrorHandler() {
+            @Override
+            protected Message<byte[]> handleInternal(StompHeaderAccessor errorHeaderAccessor, byte[] errorPayload, Throwable cause, StompHeaderAccessor clientHeaderAccessor) {
+
+
+                if (cause instanceof MessagingException) {
+                    final Message<?> failedMessage = ((MessagingException) cause).getFailedMessage();
+                    if (failedMessage != null) {
+                        final MessageHeaders headers = failedMessage.getHeaders();
+                        if (headers != null) {
+                            for (Map.Entry<String, Object> entry : headers.entrySet()) {
+
+                                errorHeaderAccessor.setNativeHeader(entry.getKey(), String.valueOf(entry.getValue()));
+                            }
+                        }
+                    }
+                }
+                return super.handleInternal(errorHeaderAccessor, errorPayload, cause, clientHeaderAccessor);
+
+            }
+        });
     }
 
     @Override
@@ -83,7 +112,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
                         if (userId == null) {
                             principal = new UserPrincipal(UUID.randomUUID().toString().replace("-", ""), true);
                         } else {
-                            principal = new UserPrincipal(userId);
+                            principal = new UserPrincipal(userTokenService.getUserId(userId, accessor.getPasscode()));
                         }
                         accessor.setUser(principal);
                     case SUBSCRIBE:

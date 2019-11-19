@@ -3,3 +3,6 @@ spring:
     url: jdbc:mysql://rm-8vb1354we89a4zvp0.mysql.zhangbei.rds.aliyuncs.com:3306/xsun_group?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
     username: xsun_group
     password: lJMoY87nDJHj2mVV
+  redis:
+    database: 2
+    host: 172.30.165.204
