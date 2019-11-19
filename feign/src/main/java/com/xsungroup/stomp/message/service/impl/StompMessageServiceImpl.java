@@ -49,6 +49,7 @@ public class StompMessageServiceImpl implements StompMessageService {
                 .setNotification(true)
                 .setNotificationTitle(title)
                 .setNotificationContent(message)
+                .setShowList(true)
                 .build();
         sendMessage(stompMessage);
     }
