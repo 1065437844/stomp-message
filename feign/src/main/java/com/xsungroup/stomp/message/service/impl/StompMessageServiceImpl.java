@@ -36,6 +36,7 @@ public class StompMessageServiceImpl implements StompMessageService {
                                 .setUserSessionIds(userSessionIds)
                                 .build()
                 )
+                .setTimeoutTime(0L)
                 .build();
         sendMessage(stompMessage);
     }
@@ -49,6 +50,8 @@ public class StompMessageServiceImpl implements StompMessageService {
                 .setNotification(true)
                 .setNotificationTitle(title)
                 .setNotificationContent(message)
+                .setShowList(true)
+                .setTimeoutTime(System.currentTimeMillis() + 10 * 24 * 60 * 60 * 1000)
                 .build();
         sendMessage(stompMessage);
     }
