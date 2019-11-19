@@ -9,6 +9,7 @@ import com.xsungroup.stomp.message.service.impl.show.type.ShowType;
 import com.xsungroup.stomp.message.service.impl.trigger.event.RemoteLoginTriggerEvent;
 import com.xsungroup.stomp.message.service.impl.trigger.event.TriggerEvent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +21,7 @@ import java.util.List;
  * @version 1.0
  * @since 1.0
  */
+@Primary
 @Service
 public class StompMessageServiceImpl implements StompMessageService {
 
