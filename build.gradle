@@ -28,7 +28,7 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'com.alibaba:fastjson:1.2.60'
-    implementation 'com.alibaba:druid-spring-boot-starter:1.1.18'
+    implementation 'com.alibaba:druid-spring-boot-starter:1.1.21'
     implementation 'net.logstash.logback:logstash-logback-encoder:5.2'    //日志
     implementation group: 'io.netty', name: 'netty-all', version: '4.1.41.Final'
     implementation group: 'io.projectreactor', name: 'reactor-core', version: '3.3.0.RELEASE'
