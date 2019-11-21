@@ -31,7 +31,10 @@ public class UserTokenServiceImpl implements UserTokenService {
     @Override
     public String getUserId(String userId, String token) {
         String redisKey = LOING_SHIRO_JWT_ID + userId;
-        final String redisToken = stringRedisTemplate.opsForValue().get(redisKey);
+        String redisToken = stringRedisTemplate.opsForValue().get(redisKey);
+        if (redisToken != null) {
+            redisToken = redisToken.replace("\"", "");
+        }
         if (!Objects.equals(token, redisToken)) {
             Map<String, Object> headers = new HashMap<>();
             headers.put("errorType", "login_failed");

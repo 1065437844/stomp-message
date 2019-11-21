@@ -1,5 +1,7 @@
 package com.xsungroup.stomp.message.service;
 
+import com.xsungroup.stomp.message.service.impl.StompMessage;
+
 import java.util.List;
 
 /**
@@ -15,4 +17,6 @@ public interface StompMessageService {
     void remoteLogin(String userId, List<String> userSessionIds);
 
     void sendMessage(String userId, String title, String message);
+
+    void sendMessage(StompMessage stompMessage);
 }

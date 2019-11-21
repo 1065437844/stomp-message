@@ -2,6 +2,7 @@ package com.xsungroup.stomp.message.controller;
 
 import com.xsungroup.stomp.message.common.BeanConverter;
 import com.xsungroup.stomp.message.dto.MessageAck;
+import com.xsungroup.stomp.message.dto.MessageRead;
 import com.xsungroup.stomp.message.entity.MessageEntity;
 import com.xsungroup.stomp.message.service.MessageService;
 import com.xsungroup.stomp.message.vo.MessageVo;
@@ -37,6 +38,19 @@ public class StompMessageController {
     public void ack(MessageAck message, Principal principal) {
         log.info("用户{} 确定了消息 {}", principal.getName(), message.getMessageIds());
         messageService.ack(principal.getName(), message.getMessageIds());
+    }
+
+    /**
+     * 消息已读
+     */
+    @MessageMapping("message.read")
+    @SendToUser(value = "/exchange/amq.direct/message.ack", broadcast = false)
+    public MessageAck read(MessageRead message, Principal principal) {
+        log.info("用户{} 确定了消息 {}", principal.getName(), message.getMessageIds());
+        messageService.read(principal.getName(), message.getMessageIds());
+
+        return new MessageAck(message.getMessageIds());
+
     }
 
     /**

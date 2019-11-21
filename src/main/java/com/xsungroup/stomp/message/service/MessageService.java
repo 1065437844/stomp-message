@@ -20,4 +20,6 @@ public interface MessageService {
     void ack(String userId, List<String> messageIds);
 
     List<MessageEntity> unAckHistory(String userId);
+
+    void read(String name, List<String> messageIds);
 }

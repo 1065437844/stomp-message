@@ -58,7 +58,9 @@ public class StompMessageServiceImpl implements StompMessageService {
         sendMessage(stompMessage);
     }
 
-    private void sendMessage(StompMessage stompMessage) {
+
+    @Override
+    public void sendMessage(StompMessage stompMessage) {
         MessageDto messageDto = new MessageDto();
         final ClickEvent clickEvent = stompMessage.getClickEvent();
         if (clickEvent != null) {

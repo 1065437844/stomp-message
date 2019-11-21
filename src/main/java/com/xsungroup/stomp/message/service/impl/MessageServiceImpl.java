@@ -58,4 +58,14 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, MessageEntity
         wrapper.gt("timeout_time", System.currentTimeMillis());
         return list(wrapper);
     }
+
+    @Override
+    public void read(String name, List<String> messageIds) {
+        UpdateWrapper<MessageEntity> wrapper = new UpdateWrapper<>();
+        wrapper.eq("user_id", name);
+        wrapper.in("message_id", messageIds);
+        wrapper.set("is_read", 1);
+        wrapper.set("read_time", System.currentTimeMillis());
+        update(wrapper);
+    }
 }
