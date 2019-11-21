@@ -11,7 +11,7 @@ import org.springframework.messaging.MessagingException;
  * @since 1.0
  */
 public class LoginFailedException extends MessagingException {
-    public LoginFailedException(Message<?> message) {
-        super(message, "用户登录失败");
+    public LoginFailedException(Message<?> message, String userId) {
+        super(message, "用户登录失败 " + userId);
     }
 }

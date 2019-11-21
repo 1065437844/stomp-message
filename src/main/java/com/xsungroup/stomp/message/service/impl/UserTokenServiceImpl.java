@@ -39,7 +39,7 @@ public class UserTokenServiceImpl implements UserTokenService {
             Map<String, Object> headers = new HashMap<>();
             headers.put("errorType", "login_failed");
             Message<String> message = new GenericMessage<>("登录失败", headers);
-            throw new LoginFailedException(message);
+            throw new LoginFailedException(message,userId);
         }
         return userId;
     }
