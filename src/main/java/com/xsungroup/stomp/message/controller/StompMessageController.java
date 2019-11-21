@@ -37,6 +37,9 @@ public class StompMessageController {
     @MessageMapping("message.ack")
     public void ack(MessageAck message, Principal principal) {
         log.info("用户{} 确定了消息 {}", principal.getName(), message.getMessageIds());
+        if (message.getMessageIds() == null || message.getMessageIds().size() == 0) {
+            return;
+        }
         messageService.ack(principal.getName(), message.getMessageIds());
     }
 
