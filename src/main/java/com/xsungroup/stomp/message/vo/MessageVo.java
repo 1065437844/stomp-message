@@ -60,29 +60,29 @@ public class MessageVo implements Serializable {
      *
      */
     @ApiModelProperty("")
-    private String isAble;
+    private Integer isAble;
     /**
      * 消息是否在消息通道确认
      */
     @ApiModelProperty("消息是否在消息通道确认")
-    private String isAck;
+    private Integer isAck;
     /**
      * 是否在通知栏显示
      * 1 在通知了显示
      * 0 不在通知栏显示
      */
     @ApiModelProperty("是否在通知栏显示 1在通知了显示 0不在通知栏显示")
-    private String isNotification;
+    private Integer isNotification;
     /**
      * 已读
      */
     @ApiModelProperty("已读")
-    private String isRead;
+    private Integer isRead;
     /**
      * 是否在消息列表中显示
      */
     @ApiModelProperty("是否在消息列表中显示")
-    private String isShowList;
+    private Integer isShowList;
     /**
      *
      */
