@@ -54,14 +54,14 @@ public class MessageDto implements Serializable {
      * 0 不在通知栏显示
      */
     @ApiModelProperty("是否在通知栏显示 1在通知了显示   0不在通知栏显示")
-    private String isNotification;
+    private Integer isNotification;
 
 
     /**
      * 是否在消息列表中显示
      */
     @ApiModelProperty("是否在消息列表中显示")
-    private String isShowList;
+    private Integer isShowList;
 
 
     /**
