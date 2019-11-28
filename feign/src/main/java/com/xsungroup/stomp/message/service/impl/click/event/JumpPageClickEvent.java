@@ -51,12 +51,22 @@ public class JumpPageClickEvent implements ClickEvent<JumpPageClickEvent.Bean> {
 
         private String id;
 
+        private String buttonText;
+
         public Builder() {
         }
 
         public JumpPageClickEvent.Builder setShowPage(ShowPage showPage, String id) {
             this.name = showPage.getName();
+            this.buttonText = showPage.getButtonText();
             this.id = id;
+            return this;
+        }
+
+        public JumpPageClickEvent.Builder setShowPage(ShowPage showPage, String id, String buttonText) {
+            this.name = showPage.getName();
+            this.id = id;
+            this.buttonText = buttonText;
             return this;
         }
 
@@ -71,5 +81,12 @@ public class JumpPageClickEvent implements ClickEvent<JumpPageClickEvent.Bean> {
          * 页面名称
          */
         String getName();
+
+        /**
+         * 按键文字
+         *
+         * @return
+         */
+        String getButtonText();
     }
 }
