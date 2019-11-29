@@ -14,9 +14,10 @@ public class JumpPageClickEvent implements ClickEvent<JumpPageClickEvent.Bean> {
 
     private Bean bean = new Bean();
 
-    public JumpPageClickEvent(String name, String id) {
+    public JumpPageClickEvent(String name, String id, String buttonText) {
         bean.setName(name);
         bean.setId(id);
+        bean.setButtonText(buttonText);
     }
 
 
@@ -42,6 +43,11 @@ public class JumpPageClickEvent implements ClickEvent<JumpPageClickEvent.Bean> {
          * ID
          */
         private String id;
+
+        /**
+         *
+         */
+        private String buttonText;
 
     }
 
@@ -71,7 +77,7 @@ public class JumpPageClickEvent implements ClickEvent<JumpPageClickEvent.Bean> {
         }
 
         public JumpPageClickEvent build() {
-            return new JumpPageClickEvent(name, id);
+            return new JumpPageClickEvent(name, id,buttonText);
         }
     }
 
