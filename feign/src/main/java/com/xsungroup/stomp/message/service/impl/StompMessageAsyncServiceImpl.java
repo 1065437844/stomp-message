@@ -1,6 +1,8 @@
 package com.xsungroup.stomp.message.service.impl;
 
 import com.xsungroup.stomp.message.service.StompMessageAsyncService;
+import com.xsungroup.stomp.message.service.StompMessageService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -14,16 +16,20 @@ import java.util.List;
  * @since 1.0
  */
 @Service
-public class StompMessageAsyncServiceImpl extends StompMessageServiceImpl implements StompMessageAsyncService {
+public class StompMessageAsyncServiceImpl implements StompMessageAsyncService {
+
+    @Autowired
+    private StompMessageService stompMessageService;
+
     @Override
     @Async
     public void remoteLogin(String userId, List<String> userSessionIds) {
-        super.remoteLogin(userId, userSessionIds);
+        stompMessageService.remoteLogin(userId, userSessionIds);
     }
 
     @Override
     @Async
     public void sendMessage(String userId, String title, String message) {
-        super.sendMessage(userId, title, message);
+        stompMessageService.sendMessage(userId, title, message);
     }
 }

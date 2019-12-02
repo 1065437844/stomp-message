@@ -5,6 +5,8 @@ import com.xsungroup.stomp.message.service.impl.show.type.ShowType;
 import com.xsungroup.stomp.message.service.impl.trigger.event.TriggerEvent;
 import lombok.Getter;
 
+import java.io.Serializable;
+
 /**
  * @author 梁建军
  * 创建日期： 2019/11/18
@@ -13,7 +15,7 @@ import lombok.Getter;
  * @since 1.0
  */
 @Getter
-public class StompMessage {
+public class StompMessage implements Serializable {
 
     private final ClickEvent clickEvent;
 
@@ -38,6 +40,7 @@ public class StompMessage {
     private final StompMessageType type;
 
     private final String userId;
+
 
     public StompMessage(Builder builder) {
         this.clickEvent = builder.clickEvent;
