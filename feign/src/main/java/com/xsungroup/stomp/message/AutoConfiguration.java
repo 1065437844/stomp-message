@@ -2,6 +2,7 @@ package com.xsungroup.stomp.message;
 
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
  * @author 梁建军
@@ -12,5 +13,6 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @ComponentScan("com.xsungroup.stomp.message")
 @EnableFeignClients("com.xsungroup.stomp.message")
+@EnableAsync
 public class AutoConfiguration {
 }
